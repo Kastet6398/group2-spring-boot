@@ -1,7 +1,9 @@
-<!DOCTYPE HTML>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{base}" lang="en">
-<title layout:fragment="title">Hello!</title>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+<title layout:fragment="title">Index</title>
+
 <div layout:fragment="content">
-    <p>Hello! My String is: [[${((someData != null)? someData.aString : 'someData is null')}]]</p>
-    <a href="/form">someForm</a>
+    <h1>Hello, World!</h1>
 </div>
+
+</html>
