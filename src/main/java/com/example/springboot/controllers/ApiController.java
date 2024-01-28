@@ -28,9 +28,8 @@ public class ApiController {
         return new MessageModel(greeting);
     }
 
-    @PostMapping("/register")
-    public BaseModel register(HttpServletResponse response, @RequestBody UserModel user) throws IOException {
-        System.out.println(user);
+    @PostMapping("/sign-up")
+    public BaseModel signUp(HttpServletResponse response, @RequestBody UserModel user) throws IOException {
         String token = Utils.register(user);
         if (token == null) {
             return new SuccessModel(false, "registration failed");

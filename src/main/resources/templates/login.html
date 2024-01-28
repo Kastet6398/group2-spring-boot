@@ -4,11 +4,13 @@
 
 <div layout:fragment="content" class="content">
   <h1>Login</h1>
-  <form>
-    <label for="email">Email: <input id="email" name="email" type="email" placeholder=""></label>
-    <label for="password">Password: <input id="password" name="password" type="password" placeholder=""></label>
-    <input type="button" value="Submit">
+  <form onsubmit="login(event)">
+    <label for="username">User: <input id="username" name="username" type="text" placeholder="" required></label>
+    <label for="password">Password: <input id="password" name="password" type="password" placeholder="" required></label>
+    <button type="submit">Submit</button>
   </form>
+  <script src="/js/login.js"></script>
 </div>
+
 
 </html>

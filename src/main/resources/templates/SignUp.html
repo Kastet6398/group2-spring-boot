@@ -4,20 +4,23 @@
 
 <div layout:fragment="content" class="content">
     <h1>Sign Up</h1>
-    <form>
-        <label for="firstName">First Name: <input id="firstName" name="firstName" type="text" placeholder=""></label>
-        <label for="secondName">Second Name: <input id="secondName" name="secondName" type="text" placeholder=""></label>
-        <label for="email">Email: <input id="email" name="email" type="email" placeholder=""></label>
-        <label for="password">Password: <input id="password" name="password" type="password" placeholder=""></label>
-        <label for="passwordConfirm">Confirm Password: <input id="passwordConfirm" name="passwordConfirm" type="password" placeholder=""></label>
-        <input type="button" value="Submit">
+    <form onsubmit="signup(event);console.log(2333);">
+        <label for="firstName">First Name: <input id="firstName" name="firstName" type="text" placeholder="" required></label>
+        <label for="lastName">Second Name: <input id="lastName" name="lastName" type="text" placeholder="" required></label>
+        <label for="username">Username: <input id="username" name="username" type="text" placeholder="" required></label>
+        <label for="email">Email: <input id="email" name="email" type="email" placeholder="" required></label>
+        <label for="password">Password: <input id="password" name="password" type="password" placeholder="" required></label>
+        <label for="passwordConfirm">Confirm Password: <input id="passwordConfirm" name="passwordConfirm" type="password" placeholder="" required></label>
+        <button type="submit">Submit</button>
     </form>
     <p class="agree">By clicking the Sign-Up button, you are agreeing with our<br>
         <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a>
     </p>
+    <p class="part2">Already have an account? <a href="/login">Login here</a></p>
+
+    <script src="/js/signup.js"></script>
 </div>
 
-<p class="part2">Already have an account? <a href="#">Login here</a></p>
 
 
 </html>
