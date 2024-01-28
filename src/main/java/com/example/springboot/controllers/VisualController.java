@@ -10,4 +10,14 @@ public class VisualController {
     public String index() {
         return "index";
     }
+    @GetMapping("/sign-up")
+    public String signUp() {
+        return "SignUp";
+    }
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
+
+
 }

@@ -1,0 +1,79 @@
+body {
+    background-color: #344a72;
+    font-family: 'Roboto', sans-serif;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwIZBEXoEIfyEqqhZL470oSmtWTNZAoweqmn-4O6HB0rFLNlvdig2td7URDbqvtV7P8po&usqp=CAU);
+}
+
+.sign-up {
+    width: 360px;
+    height: 620px;
+    margin: auto;
+    margin-top: 20px;
+    background-color: white;
+}
+h1{
+text-align: center;
+padding-top: 3px;
+}
+
+form {
+    width: 300px;
+    margin-left: 20px;
+
+}
+
+label {
+    display: flex;
+    margin-top: 20px;
+    font-sign: 18px;
+
+}
+
+input {
+   width: 100%;
+   padding: 7px;
+   border: none
+   border: 1px solid gray;
+   border-radius: 6px;
+   outline: none;
+
+}
+
+input[type="button"] {
+    width: 320px;
+    height: 35px;
+    margin-top: 20px;
+    border: none;
+    background-color: #49c1a2
+    color: white;
+    font-size: 18px;
+
+}
+
+input[type="button"]:hover {
+    background-color: #45a049;
+}
+
+p {
+   text-align: center;
+   padding-top: 20px;
+   font-size: 15px;
+
+}
+.part2{
+text-align: center;
+color: white;
+font-size: 15px;
+margin-top: -10px;
+}
+
+.part2 a {
+    color: #49c1a2;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
