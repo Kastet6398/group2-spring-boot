@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+<title layout:fragment="title">Sign Up</title>
+
+<div layout:fragment="content" class="content">
+    <h1>Sign Up</h1>
+    <form>
+        <label for="firstName">First Name: <input id="firstName" name="firstName" type="text" placeholder=""></label>
+        <label for="secondName">Second Name: <input id="secondName" name="secondName" type="text" placeholder=""></label>
+        <label for="email">Email: <input id="email" name="email" type="email" placeholder=""></label>
+        <label for="password">Password: <input id="password" name="password" type="password" placeholder=""></label>
+        <label for="passwordConfirm">Confirm Password: <input id="passwordConfirm" name="passwordConfirm" type="password" placeholder=""></label>
+        <input type="button" value="Submit">
+    </form>
+    <p class="agree">By clicking the Sign-Up button, you are agreeing with our<br>
+        <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a>
+    </p>
+</div>
+
+<p class="part2">Already have an account? <a href="#">Login here</a></p>
+
+
+</html>
