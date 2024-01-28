@@ -1,5 +1,6 @@
 package com.example.springboot.utils;
 
+import com.example.springboot.models.LoginUserModel;
 import com.example.springboot.models.UserModel;
 import com.example.springboot.models.UserTableModel;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -8,15 +9,12 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.http.HttpServletResponse;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Base64;
+import java.util.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Objects;
-import java.util.Random;
 
 public class Utils {
     private static ObjectMapper mapper;
@@ -114,9 +112,14 @@ public class Utils {
     }
 
     public static String register(UserModel user) throws IOException {
-        String token = encrypt(generateRandomString(), Constants.SECRET_KEY);
-        UserModel newUser = new UserModel(user.name(), user.email(), encrypt(user.password(), Constants.SECRET_KEY));
         UserTableModel users = (UserTableModel) readJson(Constants.USER_TABLE_FILE, UserTableModel.class);
+        for (UserModel userModel : users.users().values()) {
+            if (userModel.username().equals(user.username())) {
+                return null;
+            }
+        }
+        UserModel newUser = new UserModel(user.firstName(), user.lastName(), user.username(), user.email(), encrypt(user.password(), Constants.SECRET_KEY));
+        String token = encrypt(generateRandomString(), Constants.SECRET_KEY);
         users.users().put(token, newUser);
         writeJson(Constants.USER_TABLE_FILE, users);
         return token;
@@ -128,5 +131,20 @@ public class Utils {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    public static String login(LoginUserModel user) throws IOException {
+        UserTableModel users = (UserTableModel) readJson(Constants.USER_TABLE_FILE, UserTableModel.class);
+        System.out.println(user.password());
+        System.out.println(user.username());
+        for (Map.Entry<String, UserModel> entry : users.users().entrySet()) {
+            System.out.println(Objects.equals(entry.getValue().username(), user.username()));
+            System.out.println(Objects.equals(encrypt(user.password(), Constants.SECRET_KEY), entry.getValue().password()));
+            if (Objects.equals(entry.getValue().username(), user.username()) && Objects.equals(encrypt(user.password(), Constants.SECRET_KEY), entry.getValue().password())) {
+                System.out.println(entry.getKey());
+                return entry.getKey();
+            }
+        }
+        return null;
     }
 }
