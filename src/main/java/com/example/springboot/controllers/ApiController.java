@@ -42,6 +42,21 @@ public class ApiController {
         return new SuccessModel(true, "registered successfully");
     }
 
+    @PostMapping("/create-book")
+    public BaseModel createBook(@CookieValue(name = "token", defaultValue = "") String token, @RequestBody UserModel book) {
+        UserModel user = Utils.getUser(token);
+        if (user == null) {
+            return new SuccessModel(false, "please login first");
+        }
+
+        if (Utils.createBook(book)) {
+
+            return new SuccessModel(true, "created successfully");
+        } else {
+            return new SuccessModel(false, "created successfully");
+        }
+    }
+
     @PostMapping("/login")
     public BaseModel login(HttpServletResponse response, @RequestBody LoginUserModel user) throws IOException {
         System.out.println(user);
