@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Главная страница</title>
-</head>
-<body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+<title layout:fragment="title">Sign Up</title>
+
+<div layout:fragment="content" class="content">
 
 <h1>Поиск книг</h1>
 
@@ -43,6 +41,5 @@
 <span id="releaseYearValue">2000</span> год
 
 <script>src="/js/login.js" </script>
-
-</body>
+</div>
 </html>
