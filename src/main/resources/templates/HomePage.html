@@ -4,15 +4,15 @@
 
 <div layout:fragment="content" class="content">
 
-<h1>Поиск книг</h1>
+<h1>Book search</h1>
 
 <form action="#" method="get">
-    <label for="bookSearch">Введите название книги:</label>
+    <label for="bookSearch">Enter the name of a book:</label>
     <input type="text" id="bookSearch" name="bookSearch">
-    <input type="submit" value="Найти">
+    <input type="submit" value="Search">
 </form>
 
-<h2>Категории книг</h2>
+<h2>Book categories</h2>
 
 <select>
     <option value="category1">Категория 1</option>
@@ -20,7 +20,7 @@
     <option value="category3">Категория 3</option>
 </select>
 
-<h2>Жанры книг</h2>
+<h2>Book genres</h2>
 
 <select>
     <option value="genre1">Жанр 1</option>
@@ -34,12 +34,11 @@
 <input type="range" id="pageCount" name="pageCount" min="0" max="1000" step="50" value="500">
 <span id="pageCountValue">500</span> страниц
 
-<h2>Год выпуска книги</h2>
+<h2>Book release year</h2>
 
-<label for="releaseYear">Диапазон года выпуска:</label>
+<label for="releaseYear">Diapason:</label>
 <input type="range" id="releaseYear" name="releaseYear" min="1900" max="2024" step="1" value="2000">
-<span id="releaseYearValue">2000</span> год
+<span id="releaseYearValue">2000</span> year
 
-<script>src="/js/login.js" </script>
 </div>
 </html>

@@ -1,20 +1,20 @@
 package com.example.springboot.utils;
 
-import com.example.springboot.models.LoginUserModel;
-import com.example.springboot.models.UserModel;
-import com.example.springboot.models.UserTableModel;
+import com.example.springboot.models.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
-import javax.servlet.http.HttpServletResponse;
-import java.nio.charset.StandardCharsets;
-import java.util.*;
-
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Base64;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Random;
 
 public class Utils {
     private static ObjectMapper mapper;
@@ -27,7 +27,7 @@ public class Utils {
     private Utils() {
         throw new IllegalStateException();
     }
-    public static String serialize(Object object, String fileName) {
+    public static String serialize(Object object) {
         try {
             return getMapper().writeValueAsString(object);
         } catch (JsonProcessingException e) {
@@ -135,16 +135,38 @@ public class Utils {
 
     public static String login(LoginUserModel user) throws IOException {
         UserTableModel users = (UserTableModel) readJson(Constants.USER_TABLE_FILE, UserTableModel.class);
-        System.out.println(user.password());
-        System.out.println(user.username());
         for (Map.Entry<String, UserModel> entry : users.users().entrySet()) {
-            System.out.println(Objects.equals(entry.getValue().username(), user.username()));
-            System.out.println(Objects.equals(encrypt(user.password(), Constants.SECRET_KEY), entry.getValue().password()));
             if (Objects.equals(entry.getValue().username(), user.username()) && Objects.equals(encrypt(user.password(), Constants.SECRET_KEY), entry.getValue().password())) {
                 System.out.println(entry.getKey());
                 return entry.getKey();
             }
         }
         return null;
+    }
+
+    public static boolean createBook(BookModel book) throws IOException {
+        BookTableModel books = (BookTableModel) readJson(Constants.BOOK_TABLE_FILE, BookTableModel.class);
+        for (BookModel bookModel : books.books()) {
+            if (bookModel.name().equals(book.name())) {
+                return false;
+            }
+        }
+
+        books.books().add(new BookModel(book.name(), book.urlOfContent(), book.categoryId(), book.pagesAmount(), book.releaseYear(), books.books().size() + 1));
+        writeJson(Constants.BOOK_TABLE_FILE, books);
+        return true;
+    }
+
+    public static boolean createBookCategory(BookCategoryModel category) throws IOException {
+        BookCategoryTableModel categories = (BookCategoryTableModel) readJson(Constants.BOOK_CATEGORY_TABLE_FILE, BookCategoryTableModel.class);
+        for (BookCategoryModel bookModel : categories.categories()) {
+            if (bookModel.name().equals(category.name())) {
+                return false;
+            }
+        }
+
+        categories.categories().add(new BookCategoryModel(category.name(), categories.categories().size() + 1));
+        writeJson(Constants.BOOK_CATEGORY_TABLE_FILE, categories);
+        return true;
     }
 }

@@ -2,21 +2,16 @@ package com.example.springboot.models;
 
 import org.apache.catalina.User;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public record UserModel(String firstName, String lastName, String username, String email, String password) implements BaseModel {
-
-    private static final Map<String, User> users = new HashMap<>();
-
-    public static void addUser(User user) {
-        users.put(user.getUsername(), user);
+public record UserModel(String firstName, String lastName, String username, String email, String password, int id) implements SingleObjectModel {
+    public UserModel(String firstName, String lastName, String username, String email, String password) {
+        this(firstName, lastName, username, email, password, -1);
     }
-
-    public static User getUser(String username) {
-        return users.get(username);
-    }
-    public static boolean userExists(String username) {
-        return users.containsKey(username);
+    @Override
+    public int id() {
+        return id;
     }
 }

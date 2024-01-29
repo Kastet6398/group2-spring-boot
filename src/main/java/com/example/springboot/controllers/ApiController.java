@@ -43,17 +43,21 @@ public class ApiController {
     }
 
     @PostMapping("/create-book")
-    public BaseModel createBook(@CookieValue(name = "token", defaultValue = "") String token, @RequestBody UserModel book) {
+    public BaseModel createBook(@CookieValue(name = "token", defaultValue = "") String token, @RequestBody BookModel book) {
         UserModel user = Utils.getUser(token);
         if (user == null) {
             return new SuccessModel(false, "please login first");
         }
+        try {
+            if (Utils.createBook(book)) {
 
-        if (Utils.createBook(book)) {
-
-            return new SuccessModel(true, "created successfully");
-        } else {
-            return new SuccessModel(false, "created successfully");
+                return new SuccessModel(true, "created successfully");
+            }
+            else {
+                return new SuccessModel(false, "creation failed");
+            }
+        } catch (Exception e) {
+            return new SuccessModel(false, "creation failed");
         }
     }
 
