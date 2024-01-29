@@ -118,7 +118,7 @@ public class Utils {
                 return null;
             }
         }
-        UserModel newUser = new UserModel(user.firstName(), user.lastName(), user.username(), user.email(), encrypt(user.password(), Constants.SECRET_KEY));
+        UserModel newUser = new UserModel(user.firstName(), user.lastName(), user.username(), user.email(), encrypt(user.password(), Constants.SECRET_KEY), users.users().size() + 1);
         String token = encrypt(generateRandomString(), Constants.SECRET_KEY);
         users.users().put(token, newUser);
         writeJson(Constants.USER_TABLE_FILE, users);
@@ -128,6 +128,14 @@ public class Utils {
     public static UserModel getUser(String token) {
         try {
             return ((UserTableModel)readJson(Constants.USER_TABLE_FILE, UserTableModel.class)).users().get(token);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static BookCategoryModel getCategory(int id) {
+        try {
+            return ((BookCategoryTableModel)readJson(Constants.BOOK_CATEGORY_TABLE_FILE, BookCategoryTableModel.class)).categories().stream().filter(c -> c.id() == id).findFirst().orElse(null);
         } catch (Exception e) {
             return null;
         }
@@ -148,6 +156,12 @@ public class Utils {
         BookTableModel books = (BookTableModel) readJson(Constants.BOOK_TABLE_FILE, BookTableModel.class);
         for (BookModel bookModel : books.books()) {
             if (bookModel.name().equals(book.name())) {
+                return false;
+            }
+        }
+
+        for (int category : book.categoryId()) {
+            if (getCategory(category) == null) {
                 return false;
             }
         }

@@ -61,6 +61,25 @@ public class ApiController {
         }
     }
 
+    @PostMapping("/create-category")
+    public BaseModel createBookCategory(@CookieValue(name = "token", defaultValue = "") String token, @RequestBody BookCategoryModel category) {
+        UserModel user = Utils.getUser(token);
+        if (user == null) {
+            return new SuccessModel(false, "please login first");
+        }
+        try {
+            if (Utils.createBookCategory(category)) {
+
+                return new SuccessModel(true, "created successfully");
+            }
+            else {
+                return new SuccessModel(false, "creation failed");
+            }
+        } catch (Exception e) {
+            return new SuccessModel(false, "creation failed");
+        }
+    }
+
     @PostMapping("/login")
     public BaseModel login(HttpServletResponse response, @RequestBody LoginUserModel user) throws IOException {
         System.out.println(user);
