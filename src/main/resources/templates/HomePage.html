@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+</head>
+<body>
+
+<h1>Поиск книг</h1>
+
+<form action="#" method="get">
+    <label for="bookSearch">Введите название книги:</label>
+    <input type="text" id="bookSearch" name="bookSearch">
+    <input type="submit" value="Найти">
+</form>
+
+<h2>Категории книг</h2>
+
+<select>
+    <option value="category1">Категория 1</option>
+    <option value="category2">Категория 2</option>
+    <option value="category3">Категория 3</option>
+</select>
+
+<h2>Жанры книг</h2>
+
+<select>
+    <option value="genre1">Жанр 1</option>
+    <option value="genre2">Жанр 2</option>
+    <option value="genre3">Жанр 3</option>
+</select>
+
+<h2>Количество страниц</h2>
+
+<label for="pageCount">Диапазон страниц:</label>
+<input type="range" id="pageCount" name="pageCount" min="0" max="1000" step="50" value="500">
+<span id="pageCountValue">500</span> страниц
+
+<h2>Год выпуска книги</h2>
+
+<label for="releaseYear">Диапазон года выпуска:</label>
+<input type="range" id="releaseYear" name="releaseYear" min="1900" max="2024" step="1" value="2000">
+<span id="releaseYearValue">2000</span> год
+
+<script>src="/js/login.js" </script>
+
+</body>
+</html>

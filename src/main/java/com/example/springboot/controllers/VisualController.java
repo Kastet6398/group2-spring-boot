@@ -30,6 +30,7 @@ public class VisualController {
         model.addAttribute("user", user);
         return "login";
     }
+
     @GetMapping("/logout")
     public String login(HttpServletResponse response){
         Cookie cookie = new Cookie("token", null);
@@ -38,5 +39,11 @@ public class VisualController {
 
         response.addCookie(cookie);
         return "redirect:/";
+    }
+    @GetMapping("/home")
+    public String homePage(@CookieValue(name = "token", defaultValue = "") String token, Model model){
+        UserModel user = Utils.getUser(token);
+        model.addAttribute("user", user);
+        return "HomePage";
     }
 }
