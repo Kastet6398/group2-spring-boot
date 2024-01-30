@@ -8,6 +8,8 @@ It's a project of an amazing online library.
 <a href="https://github.com/Kastet6398">@Kastet6398</a>
 <br>
 <a href="https://github.com/AndrShv">@AndrShv</a>
+<br>
+<a href="https://github.com/smth-x">@smth-x</a>
 # Routes
 | Route                                                         | Description                            | Controller | HTTP Method                          |
 |---------------------------------------------------------------|----------------------------------------|------------|--------------------------------------|
