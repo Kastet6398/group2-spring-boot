@@ -21,28 +21,52 @@
                 <option value="mystery">Детектив</option>
             </select>
         </section>
+        <section>
+            <h2>Выберите автора:</h2>
+            <select class="form-select" aria-label="Book Author">
+                <option selected>Выберите автора</option>
+                <option value="fantasy">1</option>
+                <option value="sci-fi">2</option>
+                <option value="mystery">3</option>
+            </select>
+        </section>
+
+
 
         <section class="books-section">
             <h2>Популярные книги:</h2>
-            <div class="book" onclick="showBookDetails('book1')">
-                <input type="text" class="book-cover-url" placeholder="/images/Harry_Potter1">
-                <img src="" alt="Book 1 Cover" class="book-cover" id="book1Cover">
-                <div class="book-details">
-                    <p class="book-title">Название книги 1</p>
-                    <p class="book-author">Автор: Автор 1</p>
-                    <p class="book-description">Описание книги 1...</p>
+            <div class="book-row">
+                <div class="book" onclick="showBookDetails('book1')">
+                    <input type="text" class="book-cover-url" placeholder="Harry Potter(part1)">
+                    <img src="/images/Harry_Potter1.jpg" alt="Book 1 Cover" class="book-cover" id="book1Cover">
+                    <div class="book-details">
+                        <p class="book-title">Гарри Поттер и философский камень</p>
+                        <p class="book-author">Автор: Автор 1</p>
+                        <p class="book-description">Описание книги...</p>
+                    </div>
+                </div>
+
+                <div class="book" onclick="showBookDetails('book2')">
+                    <input type="text" class="book-cover-url" placeholder="Harry Potter(part2)">
+                    <img src="/images/Harry_Potter_and_the_Chamber_of_Secrets.jpg" alt="Book 2 Cover" class="book-cover" id="book2Cover">
+                    <div class="book-details">
+                        <p class="book-title">Гарри Поттер и Тайная комната</p>
+                        <p class="book-author">Автор: Автор 2</p>
+                        <p class="book-description">Описание книги...</p>
+                    </div>
+                </div>
+
+                <div class="book" onclick="showBookDetails('book3')">
+                    <input type="text" class="book-cover-url" placeholder="Harry Potter(part3)">
+                    <img src="/images/Harry_Potter_and_the_Prisoner_of_Azkaban.jpg" alt="Book 3 Cover" class="book-cover" id="book3Cover">
+                    <div class="book-details">
+                        <p class="book-title">Гарри Поттер и узник Азкабана</p>
+                        <p class="book-author">Автор: Автор 3</p>
+                        <p class="book-description">Описание книги 3...</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="book" onclick="showBookDetails('book2')">
-                <input type="text" class="book-cover-url" placeholder="URL обложки">
-                <img src="" alt="Book 2 Cover" class="book-cover" id="book2Cover">
-                <div class="book-details">
-                    <p class="book-title">Название книги 2</p>
-                    <p class="book-author">Автор: Автор 2</p>
-                    <p class="book-description">Описание книги 2...</p>
-                </div>
-            </div>
 
         </section>
     </main>

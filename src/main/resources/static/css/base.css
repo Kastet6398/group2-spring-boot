@@ -144,3 +144,48 @@ input[type="button"]:hover {
 #bookDetailsAuthor {
     font-style: italic;
 }
+.book-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.book {
+    flex: 0 1 calc(30% - 10px);
+    margin: 10px 0;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.book:hover {
+    transform: scale(1.1);
+}
+
+.book-cover {
+    width: 100%;
+    height: auto;
+}
+
+.book-cover-url {
+    width: 100%;
+    margin-top: 5px;
+}
+
+.book-details {
+    margin-top: 10px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#bookDetailsAuthor {
+    font-style: italic;
+}
