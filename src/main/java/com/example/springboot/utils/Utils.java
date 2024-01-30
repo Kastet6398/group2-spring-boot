@@ -165,7 +165,7 @@ public class Utils {
             }
         }
 
-        books.books().add(new BookModel(book.name(), book.urlOfContent(), book.categoryId(), book.pagesAmount(), book.releaseYear(), books.books().size() + 1));
+        books.books().add(new BookModel(book.name(), book.urlOfContent(), book.author(), book.coverSheet(), book.categoryId(), book.pagesAmount(), book.releaseYear(), books.books().size() + 1));
         writeJson(Constants.BOOK_TABLE_FILE, books);
         return true;
     }
