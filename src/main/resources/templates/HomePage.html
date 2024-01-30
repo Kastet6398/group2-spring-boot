@@ -1,44 +1,62 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
-<title layout:fragment="title">Sign Up</title>
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интернет-магазин</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <h1>Добро пожаловать в интернет-магазин</h1>
+</header>
 <div layout:fragment="content" class="content">
+    <main>
+        <section>
+            <h2>Выберите жанр книги:</h2>
+            <select class="form-select" aria-label="Book Genre">
+                <option selected>Выберите жанр</option>
+                <option value="fantasy">Фэнтези</option>
+                <option value="sci-fi">Научная фантастика</option>
+                <option value="mystery">Детектив</option>
+            </select>
+        </section>
 
-<h1>Book search</h1>
+        <section class="books-section">
+            <h2>Популярные книги:</h2>
+            <div class="book" onclick="showBookDetails('book1')">
+                <input type="text" class="book-cover-url" placeholder="/images/Harry_Potter1">
+                <img src="" alt="Book 1 Cover" class="book-cover" id="book1Cover">
+                <div class="book-details">
+                    <p class="book-title">Название книги 1</p>
+                    <p class="book-author">Автор: Автор 1</p>
+                    <p class="book-description">Описание книги 1...</p>
+                </div>
+            </div>
 
-<form action="#" method="get">
-    <label for="bookSearch">Enter the name of a book:</label>
-    <input type="text" id="bookSearch" name="bookSearch">
-    <input type="submit" value="Search">
-</form>
+            <div class="book" onclick="showBookDetails('book2')">
+                <input type="text" class="book-cover-url" placeholder="URL обложки">
+                <img src="" alt="Book 2 Cover" class="book-cover" id="book2Cover">
+                <div class="book-details">
+                    <p class="book-title">Название книги 2</p>
+                    <p class="book-author">Автор: Автор 2</p>
+                    <p class="book-description">Описание книги 2...</p>
+                </div>
+            </div>
 
-<h2>Book categories</h2>
-
-<select>
-    <option value="category1">Категория 1</option>
-    <option value="category2">Категория 2</option>
-    <option value="category3">Категория 3</option>
-</select>
-
-<h2>Book genres</h2>
-
-<select>
-    <option value="genre1">Жанр 1</option>
-    <option value="genre2">Жанр 2</option>
-    <option value="genre3">Жанр 3</option>
-</select>
-
-<h2>Количество страниц</h2>
-
-<label for="pageCount">Диапазон страниц:</label>
-<input type="range" id="pageCount" name="pageCount" min="0" max="1000" step="50" value="500">
-<span id="pageCountValue">500</span> страниц
-
-<h2>Book release year</h2>
-
-<label for="releaseYear">Diapason:</label>
-<input type="range" id="releaseYear" name="releaseYear" min="1900" max="2024" step="1" value="2000">
-<span id="releaseYearValue">2000</span> year
-
+        </section>
+    </main>
 </div>
+
+<div id="bookDetailsModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeBookDetailsModal">&times;</span>
+        <h2 id="bookDetailsTitle"></h2>
+        <p id="bookDetailsAuthor">Автор:</p>
+        <p id="bookDetailsDescription">Описание книги...</p>
+    </div>
+</div>
+
+<script src="scripts.js"></script>
+</body>
 </html>
