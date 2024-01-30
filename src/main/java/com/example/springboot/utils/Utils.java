@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
 
+@SuppressWarnings("unused")
 public class Utils {
     private static ObjectMapper mapper;
     public static ObjectMapper getMapper() {
@@ -71,7 +72,6 @@ public class Utils {
             byte[] encryptedBytes = cipher.doFinal(plainData.getBytes(StandardCharsets.UTF_8));
             return Base64.getEncoder().encodeToString(encryptedBytes);
         } catch (Exception e) {
-            e.printStackTrace();
             return null;
         }
     }
@@ -106,7 +106,6 @@ public class Utils {
             byte[] decryptedBytes = cipher.doFinal(Base64.getDecoder().decode(encryptedData));
             return new String(decryptedBytes, StandardCharsets.UTF_8);
         } catch (Exception e) {
-            e.printStackTrace();
             return null;
         }
     }
@@ -180,6 +179,19 @@ public class Utils {
         }
 
         categories.categories().add(new BookCategoryModel(category.name(), categories.categories().size() + 1));
+        writeJson(Constants.BOOK_CATEGORY_TABLE_FILE, categories);
+        return true;
+    }
+
+    public static boolean createBookGenre(BookGenreModel category) throws IOException {
+        BookGenreTableModel categories = (BookGenreTableModel) readJson(Constants.BOOK_GENRE_TABLE_FILE, BookGenreTableModel.class);
+        for (BookGenreModel bookModel : categories.genres()) {
+            if (bookModel.name().equals(category.name())) {
+                return false;
+            }
+        }
+
+        categories.genres().add(new BookGenreModel(category.name(), categories.genres().size() + 1));
         writeJson(Constants.BOOK_CATEGORY_TABLE_FILE, categories);
         return true;
     }

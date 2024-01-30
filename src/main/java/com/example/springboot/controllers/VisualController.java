@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
+@SuppressWarnings("unused")
 public class VisualController {
 
     @GetMapping("/")

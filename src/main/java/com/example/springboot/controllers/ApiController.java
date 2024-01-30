@@ -13,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@SuppressWarnings("unused")
 public class ApiController {
 
     @GetMapping("/")
@@ -21,7 +22,7 @@ public class ApiController {
         String greeting = "Hello";
 
         if (user != null) {
-            greeting += STR.", " + user.firstName() + " " + user.lastName();
+            greeting += STR.", \{user.firstName()} \{user.lastName()}";
         }
 
         greeting += "!";
