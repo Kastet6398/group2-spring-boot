@@ -1,1 +1,56 @@
-{"books":[{"name":"Book Title","urlOfContent":"https://ri.co","author":"Author Name","coverSheet":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png","categories":["1", "3"],"description":"fff","releaseYear":2000,"pagesAmount":0,"genre":1,"id":1},{"name":"Book Second","urlOfContent":"https://ri.co","author":"Author Name 2","coverSheet":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png","categories":["3333"],"description":"fff","releaseYear":2000,"pagesAmount":0,"genre":"r","id":2}]}
+{
+  "books": [
+    {
+      "name": "Гаррi Поттер i фiлософський камiнь",
+      "urlOfContent": "https://www.ukrlib.com.ua/world/printit.php?tid=3945",
+      "author": "J. K. Rowling",
+      "coverSheet": "https://sound-books.net/uploads/posts/2023-10/dzhoan-rouling-garri-potter-i-filosofskyi-kamin.webp",
+      "categories": ["1", "3"],
+      "description": "Интресная книга",
+      "releaseYear": 2000,
+      "pagesAmount": 0,
+      "genre": 1,
+      "id": 1
+    },
+    {
+      "name": "Гаррі Поттер і таємна кімната",
+      "urlOfContent": "https://www.ukrlib.com.ua/world/printit.php?tid=3944",
+      "author": "J. K. Rowling",
+      "coverSheet": "https://4read.org/uploads/posts/2023-04/garri-potter-i-taiemna-kimnata.jpg",
+      "categories": ["3333"],
+      "description": "Интресная книга",
+      "releaseYear": 2000,
+      "pagesAmount": 0,
+      "genre": "r",
+      "id": 2
+    },
+    {
+      "name": "Гаррі Поттер і в'язень Азкабану",
+      "urlOfContent": "https://www.ukrlib.com.ua/world/printit.php?tid=3942",
+      "author": "J. K. Rowling",
+      "coverSheet": "https://uaserials.pro/posters/1697.jpg",
+      "categories": ["4", "5"],
+      "description": "Интресная книга.",
+      "releaseYear": 2021,
+      "pagesAmount": 250,
+      "genre": "sci-fi",
+      "id": 3
+    },
+    {
+      "name": "Book3",
+      "urlOfContent": "https://example.com/newbook2",
+      "author": "New Author 2",
+      "coverSheet": "https://example.com/newbook2cover.png",
+      "categories": ["2", "6"],
+      "description": "Интресная книга.",
+      "releaseYear": 2023,
+      "pagesAmount": 320,
+      "genre": "fantasy",
+      "id": 4
+    }
+  ]
+}
+
+
+
+

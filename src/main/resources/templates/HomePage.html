@@ -22,7 +22,6 @@
                     <option value="">Select genre</option>
                     <option th:each="genre : ${genres}" th:value="${genre}" th:text="${genre}" th:selected="${genre == selectedGenre}"></option>
                 </select>
-
                 <h2>Select author:</h2>
                 <select onchange="document.getElementById('filter').submit();" name="author" class="form-select" aria-label="Book Author">
                     <option value="">Select author</option>
@@ -30,7 +29,6 @@
                 </select>
             </form>
         </section>
-
         <section class="books-section">
             <h2>Our books:</h2>
             <div class="book-row">
