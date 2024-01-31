@@ -13,20 +13,20 @@
 <div layout:fragment="content" class="content">
     <main>
         <section>
-            <form id="genre">
+            <form id="filter">
+                <h2>Search:</h2>
+                <input name="search" type="search">
+                <button style="display:inline" type="submit">Search</button>
                 <h2>Select genre:</h2>
-                <select name="genre" onchange="document.getElementById('genre').submit();" class="form-select" aria-label="Book Genre">
-                    <option selected>Select genre</option>
-                    <option th:each="genre : ${genres}" th:value="${genre.getId()}" th:text="${genre.getName()}"></option>
+                <select name="genre" onchange="document.getElementById('filter').submit();" class="form-select" aria-label="Book Genre">
+                    <option value="">Select genre</option>
+                    <option th:each="genre : ${genres}" th:value="${genre}" th:text="${genre}" th:selected="${genre == selectedGenre}"></option>
                 </select>
-            </form>
-        </section>
-        <section>
-            <form id="author">
+
                 <h2>Select author:</h2>
-                <select onchange="document.getElementById('author').submit();" name="author" class="form-select" aria-label="Book Author">
-                    <option selected>Select author</option>
-                    <option th:each="author : ${authors}" th:value="${author}" th:text="${author}"></option>
+                <select onchange="document.getElementById('filter').submit();" name="author" class="form-select" aria-label="Book Author">
+                    <option value="">Select author</option>
+                    <option th:each="author : ${authors}" th:value="${author}" th:text="${author}" th:selected="${author.equals(selectedAuthor)}"></option>
                 </select>
             </form>
         </section>
@@ -34,7 +34,7 @@
         <section class="books-section">
             <h2>Our books:</h2>
             <div class="book-row">
-                <div th:each="book : ${books}" class="book" onclick="showBookDetails('book' + ${book.id})">
+                <div th:each="book : ${books}" class="book">
                     <a th:href="@{${book.urlOfContent}}" target="_blank">
                         <p type="text" class="book-cover-url" th:text="${book.name}"></p>
                         <img th:src="${book.coverSheet}" th:alt="|Book ${book.id} Cover|" class="book-cover" th:id="'book' + ${book.id} + 'Cover'">

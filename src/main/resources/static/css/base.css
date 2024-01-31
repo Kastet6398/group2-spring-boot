@@ -67,7 +67,7 @@ label {
     font-size: 18px;
 }
 
-input {
+button,input {
     width: 90%;
     padding: 7px;
     border: 1px solid gray;
@@ -88,7 +88,7 @@ button {
     display: block;
 }
 
-input[type="button"]:hover {
+button,input[type="button"]:hover {
     background-color: #45a049;
 }
 
@@ -112,6 +112,7 @@ input[type="button"]:hover {
     text-decoration: underline;
 }
 .book {
+    box-shadow: 7px 7px 7px 5px #999999;
     margin: 10px;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;

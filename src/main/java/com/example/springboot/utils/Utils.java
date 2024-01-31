@@ -142,22 +142,6 @@ public class Utils {
         }
     }
 
-    public static BookCategoryModel getCategory(int id) {
-        try {
-            return ((BookCategoryTableModel) readJson(Constants.BOOK_CATEGORY_TABLE_FILE, BookCategoryTableModel.class)).getCategories().stream().filter(c -> c.getId() == id).findFirst().orElse(null);
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    public static BookGenreModel getGenre(int id) {
-        try {
-            return ((BookGenreTableModel) readJson(Constants.BOOK_GENRE_TABLE_FILE, BookGenreTableModel.class)).getGenres().stream().filter(c -> c.getId() == id).findFirst().orElse(null);
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
     public static BookModel getBook(int id) {
         try {
             return ((BookTableModel) readJson(Constants.BOOK_TABLE_FILE, BookTableModel.class)).getBooks().stream().filter(c -> c.getId() == id).findFirst().orElse(null);
@@ -186,36 +170,8 @@ public class Utils {
         }
 
         int id = books.getBooks().size() + 1;
-        books.getBooks().add(new BookModel(book.getName(), book.getUrlOfContent(), book.getAuthor(), book.getCoverSheet(), book.getCategoryId(), book.getPagesAmount(), book.getReleaseYear(), book.getGenre(), book.getDescription(), id));
+        books.getBooks().add(new BookModel(book.getName(), book.getUrlOfContent(), book.getAuthor(), book.getCoverSheet(), book.getCategories(), book.getPagesAmount(), book.getReleaseYear(), book.getGenre(), book.getDescription(), id));
         writeJson(Constants.BOOK_TABLE_FILE, books);
-        return id;
-    }
-
-    public static int createBookCategory(BookCategoryModel category) throws IOException {
-        BookCategoryTableModel categories = (BookCategoryTableModel) readJson(Constants.BOOK_CATEGORY_TABLE_FILE, BookCategoryTableModel.class);
-        for (BookCategoryModel bookModel : categories.getCategories()) {
-            if (bookModel.getName().equals(category.getName())) {
-                return -1;
-            }
-        }
-
-        int id = categories.getCategories().size() + 1;
-        categories.getCategories().add(new BookCategoryModel(category.getName(), id));
-        writeJson(Constants.BOOK_CATEGORY_TABLE_FILE, categories);
-        return id;
-    }
-
-    public static int createBookGenre(BookGenreModel category) throws IOException {
-        BookGenreTableModel categories = (BookGenreTableModel) readJson(Constants.BOOK_GENRE_TABLE_FILE, BookGenreTableModel.class);
-        for (BookGenreModel bookModel : categories.getGenres()) {
-            if (bookModel.getName().equals(category.getName())) {
-                return -1;
-            }
-        }
-
-        int id = categories.getGenres().size() + 1;
-        categories.getGenres().add(new BookGenreModel(category.getName(), id));
-        writeJson(Constants.BOOK_GENRE_TABLE_FILE, categories);
         return id;
     }
 }

@@ -1,8 +1,6 @@
 package com.example.springboot;
 
 import com.example.springboot.models.auth.UserTableModel;
-import com.example.springboot.models.books.BookCategoryTableModel;
-import com.example.springboot.models.books.BookGenreTableModel;
 import com.example.springboot.models.books.BookTableModel;
 import com.example.springboot.utils.Constants;
 import org.springframework.boot.SpringApplication;
@@ -19,10 +17,6 @@ public class Application {
 			UserTableModel.createFile();
 		if (!new File(Constants.BOOK_TABLE_FILE).exists())
 			BookTableModel.createFile();
-		if (!new File(Constants.BOOK_CATEGORY_TABLE_FILE).exists())
-			BookCategoryTableModel.createFile();
-		if (!new File(Constants.BOOK_GENRE_TABLE_FILE).exists())
-			BookGenreTableModel.createFile();
 		SpringApplication.run(Application.class, args);
 	}
 }

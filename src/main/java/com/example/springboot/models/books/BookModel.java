@@ -41,12 +41,12 @@ public class BookModel implements SingleObjectModel {
         this.coverSheet = coverSheet;
     }
 
-    public ArrayList<Integer> getCategoryId() {
-        return categoryId;
+    public ArrayList<String> getCategories() {
+        return categories;
     }
 
-    public void setCategoryId(ArrayList<Integer> categoryId) {
-        this.categoryId = categoryId;
+    public void setCategories(ArrayList<String> categoryId) {
+        this.categories = categoryId;
     }
 
     public int getReleaseYear() {
@@ -65,11 +65,11 @@ public class BookModel implements SingleObjectModel {
         this.pagesAmount = pagesAmount;
     }
 
-    public int getGenre() {
+    public String getGenre() {
         return genre;
     }
 
-    public void setGenre(int genre) {
+    public void setGenre(String genre) {
         this.genre = genre;
     }
 
@@ -81,10 +81,10 @@ public class BookModel implements SingleObjectModel {
         private String urlOfContent;
         private String author;
         private String coverSheet;
-        private ArrayList<Integer> categoryId;
+        private ArrayList<String> categories;
         private int releaseYear;
         private int pagesAmount;
-        private int genre;
+        private String genre;
         private int id;
         private String description;
 
@@ -97,19 +97,19 @@ public class BookModel implements SingleObjectModel {
     }
 
     public BookModel(String name, String urlOfContent, String author,
-                     String coverSheet, ArrayList<Integer> categoryId,
-                     int pagesAmount, int releaseYear, int genre, String description) {
-            this(name, urlOfContent, author, coverSheet, categoryId, pagesAmount, releaseYear, genre, description, -1);
+                     String coverSheet, ArrayList<String> categories,
+                     int pagesAmount, int releaseYear, String genre, String description) {
+            this(name, urlOfContent, author, coverSheet, categories, pagesAmount, releaseYear, genre, description, -1);
         }
 
         public BookModel(String name, String urlOfContent, String author,
-                         String coverSheet, ArrayList<Integer> categoryId,
-                         int pagesAmount, int releaseYear, int genre, String description, int id) {
+                         String coverSheet, ArrayList<String> categories,
+                         int pagesAmount, int releaseYear, String genre, String description, int id) {
             this.name = name;
             this.urlOfContent = urlOfContent;
             this.author = author;
             this.coverSheet = coverSheet;
-            this.categoryId = categoryId;
+            this.categories = categories;
             this.pagesAmount = pagesAmount;
             this.releaseYear = releaseYear;
             this.genre = genre;
