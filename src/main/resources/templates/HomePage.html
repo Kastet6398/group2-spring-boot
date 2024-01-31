@@ -15,7 +15,7 @@
         <section>
             <form id="filter">
                 <h2>Search:</h2>
-                <input name="search" type="search">
+                <input th:value="${search}" name="search" type="search">
                 <button style="display:inline" type="submit">Search</button>
                 <h2>Select genre:</h2>
                 <select name="genre" onchange="document.getElementById('filter').submit();" class="form-select" aria-label="Book Genre">

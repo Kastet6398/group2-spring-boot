@@ -79,7 +79,7 @@ public class ApiController {
         List<BookModel> filteredBooks = ((BookTableModel) Utils.readJson(Constants.BOOK_TABLE_FILE, BookTableModel.class)).getBooks();
         if (categories != null && !categories.isEmpty()) {
             filteredBooks = filteredBooks.stream()
-                    .filter(x -> x.getCategories().stream().anyMatch(categories::contains))
+                    .filter(x -> categories.contains(x.getCategory()))
                     .toList();
         }
         if (genres != null && !genres.isEmpty()) {

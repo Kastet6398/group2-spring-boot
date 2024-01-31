@@ -2,8 +2,6 @@ package com.example.springboot.models.books;
 
 import com.example.springboot.models.SingleObjectModel;
 
-import java.util.ArrayList;
-
 
 public class BookModel implements SingleObjectModel {
     public String getName() {
@@ -41,12 +39,12 @@ public class BookModel implements SingleObjectModel {
         this.coverSheet = coverSheet;
     }
 
-    public ArrayList<String> getCategories() {
-        return categories;
+    public String getCategory() {
+        return category;
     }
 
-    public void setCategories(ArrayList<String> categoryId) {
-        this.categories = categoryId;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public int getReleaseYear() {
@@ -78,16 +76,16 @@ public class BookModel implements SingleObjectModel {
     }
 
     private String name;
-        private String urlOfContent;
-        private String author;
-        private String coverSheet;
-        private ArrayList<String> categories;
-        private int releaseYear;
-        private int pagesAmount;
-        private String genre;
-        private int id;
-        private int publisher;
-        private String description;
+    private String urlOfContent;
+    private String author;
+    private String coverSheet;
+    private String category;
+    private int releaseYear;
+    private int pagesAmount;
+    private String genre;
+    private int id;
+    private int publisher;
+    private String description;
 
     public int getPublisher() {
         return publisher;
@@ -106,19 +104,19 @@ public class BookModel implements SingleObjectModel {
     }
 
     public BookModel(String name, String urlOfContent, String author,
-                     String coverSheet, ArrayList<String> categories,
+                     String coverSheet, String category,
                      int pagesAmount, int releaseYear, String genre, int publisher,String description) {
-            this(name, urlOfContent, author, coverSheet, categories, pagesAmount, releaseYear, genre, publisher,description, -1);
+            this(name, urlOfContent, author, coverSheet, category, pagesAmount, releaseYear, genre, publisher,description, -1);
         }
 
         public BookModel(String name, String urlOfContent, String author,
-                         String coverSheet, ArrayList<String> categories,
+                         String coverSheet, String category,
                          int pagesAmount, int releaseYear, String genre, int publisher, String description, int id) {
             this.name = name;
             this.urlOfContent = urlOfContent;
             this.author = author;
             this.coverSheet = coverSheet;
-            this.categories = categories;
+            this.category = category;
             this.pagesAmount = pagesAmount;
             this.releaseYear = releaseYear;
             this.genre = genre;
@@ -127,9 +125,9 @@ public class BookModel implements SingleObjectModel {
             this.description = description;
         }
     public BookModel(String name, String urlOfContent, String author,
-                     String coverSheet, ArrayList<String> categories,
+                     String coverSheet, String category,
                      int pagesAmount, int releaseYear, String genre,String description) {
-        this(name, urlOfContent, author, coverSheet, categories, pagesAmount, releaseYear, genre, -1,description);
+        this(name, urlOfContent, author, coverSheet, category, pagesAmount, releaseYear, genre, -1,description);
     }
     @Override
     public int getId() {

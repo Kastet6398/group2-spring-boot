@@ -14,6 +14,7 @@
 <a href="/login" th:if="${user==null}">Login</a>
 <a href="/sign-up" th:if="${user==null}">Sign up</a>
 <a href="/logout" th:unless="${user==null}">Logout</a>
+<a href="/create-book" th:unless="${user==null}">Create book</a>
 <p th:unless="${user==null}" th:text="${user == null}? 'Welcome!' : |Welcome, ${user.getFirstName()} ${user.getLastName()}!|"></p>
 </header>
 <div layout:fragment="content">
