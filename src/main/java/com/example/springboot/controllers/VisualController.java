@@ -21,7 +21,7 @@ public class VisualController {
     public String index(@CookieValue(name = "token", defaultValue = "") String token, Model model) {
         UserModel user = Utils.getUser(token);
         model.addAttribute("user", user);
-        return "index";
+        return "HomePage";
     }
     @GetMapping("/sign-up")
     public String signUp(@CookieValue(name = "token", defaultValue = "") String token, Model model) {
