@@ -1,6 +1,6 @@
 package com.example.springboot;
 
-import com.example.springboot.models.UserTableModel;
+import com.example.springboot.models.auth.UserTableModel;
 import com.example.springboot.models.books.BookCategoryTableModel;
 import com.example.springboot.models.books.BookGenreTableModel;
 import com.example.springboot.models.books.BookTableModel;

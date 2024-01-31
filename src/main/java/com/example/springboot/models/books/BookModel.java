@@ -4,6 +4,7 @@ import com.example.springboot.models.SingleObjectModel;
 
 import java.util.ArrayList;
 
+
 public class BookModel implements SingleObjectModel {
     public String getName() {
         return name;

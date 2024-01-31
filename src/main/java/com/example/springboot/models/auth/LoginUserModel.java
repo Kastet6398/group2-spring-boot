@@ -1,4 +1,6 @@
-package com.example.springboot.models;
+package com.example.springboot.models.auth;
+
+import com.example.springboot.models.BaseModel;
 
 @SuppressWarnings("unused")
 public class LoginUserModel implements BaseModel {

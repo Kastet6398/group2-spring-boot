@@ -1,5 +1,6 @@
-package com.example.springboot.models;
+package com.example.springboot.models.auth;
 
+import com.example.springboot.models.BaseModel;
 import com.example.springboot.utils.Constants;
 import com.example.springboot.utils.Utils;
 

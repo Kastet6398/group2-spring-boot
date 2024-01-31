@@ -1,12 +1,18 @@
 package com.example.springboot.controllers;
 
 import com.example.springboot.models.*;
+import com.example.springboot.models.api.IdModel;
+import com.example.springboot.models.api.MessageModel;
+import com.example.springboot.models.api.SuccessModel;
+import com.example.springboot.models.auth.LoginUserModel;
+import com.example.springboot.models.auth.UserModel;
 import com.example.springboot.models.books.*;
 import com.example.springboot.utils.Constants;
 import com.example.springboot.utils.Utils;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.*;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -154,6 +160,11 @@ public class ApiController {
         configureCookie(response, cookie);
 
         return new SuccessModel(true, "logged in successfully");
+    }
+
+    @GetMapping("/book/{id}")
+    public BookModel getBook(@PathVariable int id) {
+        return Utils.getBook(id);
     }
 
     @GetMapping("/logout")

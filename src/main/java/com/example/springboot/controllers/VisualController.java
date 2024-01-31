@@ -1,6 +1,8 @@
 package com.example.springboot.controllers;
 
-import com.example.springboot.models.UserModel;
+import com.example.springboot.models.auth.UserModel;
+import com.example.springboot.models.books.BookTableModel;
+import com.example.springboot.utils.Constants;
 import com.example.springboot.utils.Utils;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -8,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.io.IOException;
 
 @Controller
 @SuppressWarnings("unused")
@@ -42,9 +46,10 @@ public class VisualController {
         return "redirect:/";
     }
     @GetMapping("/home")
-    public String homePage(@CookieValue(name = "token", defaultValue = "") String token, Model model){
+    public String homePage(@CookieValue(name = "token", defaultValue = "") String token, Model model) throws IOException {
         UserModel user = Utils.getUser(token);
         model.addAttribute("user", user);
+        model.addAttribute("books", Utils.readJson(Constants.BOOK_TABLE_FILE, BookTableModel.class));
         return "HomePage";
     }
 }

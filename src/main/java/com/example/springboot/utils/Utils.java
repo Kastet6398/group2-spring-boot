@@ -1,7 +1,8 @@
 package com.example.springboot.utils;
 
-import com.example.springboot.models.*;
-
+import com.example.springboot.models.auth.LoginUserModel;
+import com.example.springboot.models.auth.UserModel;
+import com.example.springboot.models.auth.UserTableModel;
 import com.example.springboot.models.books.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -152,6 +153,14 @@ public class Utils {
     public static BookGenreModel getGenre(int id) {
         try {
             return ((BookGenreTableModel) readJson(Constants.BOOK_GENRE_TABLE_FILE, BookGenreTableModel.class)).getGenres().stream().filter(c -> c.getId() == id).findFirst().orElse(null);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static BookModel getBook(int id) {
+        try {
+            return ((BookTableModel) readJson(Constants.BOOK_TABLE_FILE, BookTableModel.class)).getBooks().stream().filter(c -> c.getId() == id).findFirst().orElse(null);
         } catch (Exception e) {
             return null;
         }

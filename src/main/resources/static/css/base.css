@@ -47,7 +47,7 @@ input[type="button"] {
 }
 
 .content {
-    max-width: 800px; /* Изменено значение ширины */
+    max-width: 800px;
     width: 80%;
     height: 80%;
     padding: 30px;
@@ -68,7 +68,7 @@ label {
 }
 
 input {
-    width: 150%;
+    width: 90%;
     padding: 7px;
     border: 1px solid gray;
     border-radius: 6px;

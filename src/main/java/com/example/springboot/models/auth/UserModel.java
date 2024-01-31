@@ -1,4 +1,6 @@
-package com.example.springboot.models;
+package com.example.springboot.models.auth;
+
+import com.example.springboot.models.SingleObjectModel;
 
 public class UserModel implements SingleObjectModel {
     public String getFirstName() {
