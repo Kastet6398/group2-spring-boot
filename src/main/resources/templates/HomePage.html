@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="/js/homePage.js"></script>
 </head>
 <body>
 <header>
@@ -39,6 +40,7 @@
                         <p class="book-author" th:text="'Автор: ' + ${book.author}"></p>
                         <p class="book-description" th:text="${book.description}"></p>
                     </a>
+                    <button th:if="${book.publisher == user.id}" th:onclick="|deleteBook(${book.id})|">Delete</button>
                 </div>
             </div>
         </section>
