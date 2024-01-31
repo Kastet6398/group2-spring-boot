@@ -9,15 +9,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
+import java.awt.print.Book;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Base64;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
+
+import static java.util.stream.Collectors.toList;
 
 @SuppressWarnings("unused")
 public class Utils {
@@ -160,8 +160,19 @@ public class Utils {
         }
         return null;
     }
+    public static boolean deleteBook(int id, int userid) throws IOException{
+        if (userid != getBook(id).getPublisher()){
+            return false;
+        }
 
-    public static int createBook(BookModel book) throws IOException {
+        BookTableModel books = (BookTableModel) readJson(Constants.BOOK_TABLE_FILE, BookTableModel.class);
+        List<BookModel> list = books.getBooks();
+        list = list.stream().filter(e->e.getId()!=id).toList();
+        writeJson(Constants.BOOK_TABLE_FILE, new BookTableModel(new ArrayList<>(list)));
+        return true;
+    }
+
+    public static int createBook(BookModel book, int userid) throws IOException {
         BookTableModel books = (BookTableModel) readJson(Constants.BOOK_TABLE_FILE, BookTableModel.class);
         for (BookModel bookModel : books.getBooks()) {
             if (bookModel.getName().equals(book.getName())) {
@@ -170,8 +181,31 @@ public class Utils {
         }
 
         int id = books.getBooks().size() + 1;
-        books.getBooks().add(new BookModel(book.getName(), book.getUrlOfContent(), book.getAuthor(), book.getCoverSheet(), book.getCategories(), book.getPagesAmount(), book.getReleaseYear(), book.getGenre(), book.getDescription(), id));
+        books.getBooks().add(new BookModel(book.getName(), book.getUrlOfContent(), book.getAuthor(), book.getCoverSheet(), book.getCategories(), book.getPagesAmount(), book.getReleaseYear(), book.getGenre(), userid, book.getDescription(), id));
         writeJson(Constants.BOOK_TABLE_FILE, books);
         return id;
+    }
+    public static boolean updateBook(BookModel book, int id, int userid) throws IOException{
+        if (userid != getBook(id).getPublisher()){
+            return false;
+        }
+
+        BookTableModel books = (BookTableModel) readJson(Constants.BOOK_TABLE_FILE, BookTableModel.class);
+
+        BookModel newBook = books.getBooks().stream().filter(x->x.getId()==id)
+           .findFirst()
+              .orElseThrow();
+        newBook.setName(book.getName());
+        newBook.setUrlOfContent(book.getUrlOfContent());
+        newBook.setAuthor(book.getAuthor());
+        newBook.setCoverSheet(book.getCoverSheet());
+        newBook.setCategories(book.getCategories());
+        newBook.setPagesAmount(book.getPagesAmount());
+        newBook.setReleaseYear(book.getReleaseYear());
+        newBook.setGenre(book.getGenre());
+        newBook.setDescription(book.getDescription());
+
+        writeJson(Constants.BOOK_TABLE_FILE, books);
+        return true;
     }
 }

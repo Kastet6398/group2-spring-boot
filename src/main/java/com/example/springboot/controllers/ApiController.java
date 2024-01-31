@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static java.lang.StringTemplate.STR;
+
 @RestController
 @RequestMapping("/api")
 @SuppressWarnings("unused")
@@ -60,7 +62,7 @@ public class ApiController {
         }
 
         try {
-            int res = Utils.createBook(book);
+            int res = Utils.createBook(book, user.getId());
             if (res != -1) {
                 return new IdModel(res);
             } else {
@@ -130,5 +132,38 @@ public class ApiController {
         cookie.setPath("/");
         cookie.setMaxAge(100000);
         response.addCookie(cookie);
+    }
+    @GetMapping("/delete-book/{id}")
+    public BaseModel deleteBook(@PathVariable int id ,@CookieValue(name = "token", defaultValue = "") String token) {
+        UserModel user = Utils.getUser(token);
+
+        if (user == null) {
+            return new SuccessModel(false, "please login first");
+        }
+
+        try {
+            boolean res = Utils.deleteBook(id, user.getId());
+           return new SuccessModel(res, res? "deletion success":"deletion failed");
+       }catch (Exception e){
+           e.printStackTrace();
+           return new SuccessModel(false, "deletion failed");
+       }
+    }
+
+    @PostMapping("/change-book/{id}")
+    public BaseModel changeBook(@PathVariable int id ,@CookieValue(name = "token", defaultValue = "") String token,@RequestBody BookModel book) {
+        UserModel user = Utils.getUser(token);
+
+        if (user == null) {
+            return new SuccessModel(false, "please login first");
+        }
+
+        try {
+            boolean res = Utils.updateBook(book, id, user.getId());
+            return new SuccessModel(res, res? "changing success":"changing failed");
+        }catch (Exception e){
+            e.printStackTrace();
+            return new SuccessModel(false, "changing failed");
+        }
     }
 }
