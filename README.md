@@ -24,6 +24,8 @@ It's a project of an amazing online library.
 | /api/create-book                                    | API book creation                      | API        | POST                                 |
 | /api/list-books\[?categories=...\[&search=...]]     | API Book browse                        | API        | GET                                  |
 | /list-books\[?search=...\[&genre=...\[&author=...]] | API Book browse                        | API        | GET                                  |
+| /api/delete-book/{id}                               | API Book deletion                      | API        | GET                                  |
+| /api/change-book/{id}                               | API Book updating                      | API        | POST                                 |
 # TODO
 - [x] Authentication and Authorization (API)
 - [x] Authentication and Authorization (Visual)
