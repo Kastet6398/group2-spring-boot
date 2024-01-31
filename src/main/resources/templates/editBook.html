@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+<title layout:fragment="title">Sign Up</title>
+
+<div layout:fragment="content" class="content">
+    <h1>Sign Up</h1>
+    <form onsubmit="submitForm(event)">
+        <label for="name">Name:</label>
+        <input type="text" th:value="${book.getName()}" id="name" name="name" required><br>
+
+        <label for="urlOfContent">URL of Content:</label>
+        <input type="text" th:value="${book.getUrlOfContent()}" id="urlOfContent" name="urlOfContent" required><br>
+
+        <label for="author">Author:</label>
+        <input type="text" th:value="${book.getAuthor()}" id="author" name="author" required><br>
+
+        <label for="coverSheet">Cover Sheet:</label>
+        <input type="text" th:value="${book.getCoverSheet()}" id="coverSheet" name="coverSheet" required><br>
+
+        <label for="category">Category:</label>
+        <input type="text" th:value="${book.getCategory()}" id="category" name="category" required><br>
+
+        <label for="releaseYear">Release Year:</label>
+        <input type="number" th:value="${book.getReleaseYear()}" id="releaseYear" name="releaseYear" required><br>
+
+        <label for="pagesAmount">Pages Amount:</label>
+        <input type="number" th:value="${book.getPagesAmount()}" id="pagesAmount" name="pagesAmount" required><br>
+
+        <label for="genre">Genre:</label>
+        <input type="text" th:value="${book.getGenre()}" id="genre" name="genre" required><br>
+
+        <label for="description">Description:</label>
+        <textarea id="description" th:value="${book.getDescription()}" name="description" required></textarea><br>
+
+        <button type="submit">Submit</button>
+    </form>
+    <script>
+        /*<![CDATA[*/
+        function submitForm(event) {
+            // Get form data
+            var formData = {
+                name: document.getElementById('name').value,
+                urlOfContent: document.getElementById('urlOfContent').value,
+                author: document.getElementById('author').value,
+                coverSheet: document.getElementById('coverSheet').value,
+                category: document.getElementById('category').value,
+                releaseYear: parseInt(document.getElementById('releaseYear').value),
+                pagesAmount: parseInt(document.getElementById('pagesAmount').value),
+                genre: document.getElementById('genre').value,
+                description: document.getElementById('description').value
+            };
+
+            console.log(formData);
+
+            // Send data to API endpoint
+            fetch('/api/change-book/[[${book.getId()}]]', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle API response
+                console.log(data);
+                // Optionally, perform actions based on the response
+                if (data.success || data.id) {
+                    alert('Book created successfully!'); // Change this as needed
+                } else {
+                    alert('Error creating book: ' + data.message); // Change this as needed
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        event.preventDefault();
+        }
+/*]]>*/</script>
+</div>
+</html>

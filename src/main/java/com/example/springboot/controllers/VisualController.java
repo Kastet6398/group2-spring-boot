@@ -9,10 +9,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -76,6 +73,17 @@ public class VisualController {
             return "redirect:/";
         }
         return "createBook";
+    }
+    @GetMapping("/change-book/{id}")
+    public String changeBook(@PathVariable int id, @CookieValue(name = "token", defaultValue = "") String token, Model model) {
+        UserModel user = Utils.getUser(token);
+        BookModel book = Utils.getBook(id);
+        if (user == null || book == null || book.getPublisher() != Objects.requireNonNull(user).getId()) {
+            return "redirect:/";
+        }
+        model.addAttribute("user", user);
+        model.addAttribute("book", book);
+        return "editBook";
     }
     @GetMapping("/login")
     public String login(@CookieValue(name = "token", defaultValue = "") String token, Model model){

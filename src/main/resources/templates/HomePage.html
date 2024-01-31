@@ -41,6 +41,7 @@
                         <p class="book-description" th:text="${book.description}"></p>
                     </a>
                     <button th:if="${book.publisher == user.id}" th:onclick="|deleteBook(${book.id})|">Delete</button>
+                    <button th:if="${book.publisher == user.id}" th:onclick="|location.href='/change-book/${book.id}'|">Edit</button>
                 </div>
             </div>
         </section>
