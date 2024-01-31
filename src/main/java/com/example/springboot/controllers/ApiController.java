@@ -1,15 +1,16 @@
 package com.example.springboot.controllers;
 
 import com.example.springboot.models.*;
+import com.example.springboot.models.books.*;
 import com.example.springboot.utils.Constants;
 import com.example.springboot.utils.Utils;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.*;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api")
@@ -22,7 +23,7 @@ public class ApiController {
         String greeting = "Hello";
 
         if (user != null) {
-            greeting += STR.", \{user.firstName()} \{user.lastName()}";
+            greeting += STR.", \{user.getFirstName()} \{user.getLastName()}";
         }
 
         greeting += "!";
@@ -53,30 +54,49 @@ public class ApiController {
         }
 
         try {
-            if (Utils.createBook(book)) {
-                return new SuccessModel(true, "created successfully");
+            int res = Utils.createBook(book);
+            if (res != -1) {
+                return new IdModel(res);
             } else {
                 return new SuccessModel(false, "creation failed");
             }
         } catch (Exception e) {
+            e.printStackTrace();
             return new SuccessModel(false, "creation failed");
         }
     }
 
-    @PostMapping("/list-books")
-    public BookTableModel listBooks(@RequestParam(name = "categories", required = false) ArrayList<Integer> categories, @RequestParam(name = "search", required = false) String search) throws IOException {
-        List<BookModel> filteredBooks = ((BookTableModel) Utils.readJson(Constants.BOOK_TABLE_FILE, BookTableModel.class)).books();
+    @GetMapping("/list-books")
+    public BookTableModel listBooks(@RequestParam(name = "genres", required = false) ArrayList<Integer> genres, @RequestParam(name = "categories", required = false) ArrayList<Integer> categories, @RequestParam(name = "search", required = false) String search, @RequestParam(name = "author", required = false) String author) throws IOException {
+        List<BookModel> filteredBooks = ((BookTableModel) Utils.readJson(Constants.BOOK_TABLE_FILE, BookTableModel.class)).getBooks();
         if (categories != null && !categories.isEmpty()) {
             filteredBooks = filteredBooks.stream()
-                    .filter(x -> x.categoryId().stream().anyMatch(categories::contains))
+                    .filter(x -> x.getCategoryId().stream().anyMatch(categories::contains))
                     .toList();
         }
-
+        if (genres != null && !genres.isEmpty()) {
+            filteredBooks = filteredBooks.stream()
+                    .filter(x -> genres.contains(x.getGenre()))
+                    .toList();
+        }
         if (search != null && !search.isEmpty()) {
-            filteredBooks = filteredBooks.stream().filter(x -> x.name().contains(search)).toList();
+            filteredBooks = filteredBooks.stream().filter(x -> x.getName().contains(search)).toList();
+        }
+        if (author != null && !author.isEmpty()) {
+            filteredBooks = filteredBooks.stream().filter(x -> Objects.equals(x.getAuthor(), author)).toList();
         }
 
         return new BookTableModel(new ArrayList<>(filteredBooks));
+    }
+
+    @GetMapping("/list-categories")
+    public BookCategoryTableModel listCategories() throws IOException {
+        return (BookCategoryTableModel) Utils.readJson(Constants.BOOK_CATEGORY_TABLE_FILE, BookCategoryTableModel.class);
+    }
+
+    @GetMapping("/list-genres")
+    public BookGenreTableModel listGenres() throws IOException {
+        return (BookGenreTableModel) Utils.readJson(Constants.BOOK_GENRE_TABLE_FILE, BookGenreTableModel.class);
     }
 
     @PostMapping("/create-category")
@@ -88,12 +108,35 @@ public class ApiController {
         }
 
         try {
-            if (Utils.createBookCategory(category)) {
-                return new SuccessModel(true, "created successfully");
+            int res = Utils.createBookCategory(category);
+            if (res != -1) {
+                return new IdModel(res);
             } else {
                 return new SuccessModel(false, "creation failed");
             }
         } catch (Exception e) {
+            e.printStackTrace();
+            return new SuccessModel(false, "creation failed");
+        }
+    }
+
+    @PostMapping("/create-genre")
+    public BaseModel createBookGenre(@CookieValue(name = "token", defaultValue = "") String token, @RequestBody BookGenreModel category) {
+        UserModel user = Utils.getUser(token);
+
+        if (user == null) {
+            return new SuccessModel(false, "please login first");
+        }
+
+        try {
+            int res = Utils.createBookGenre(category);
+            if (res != -1) {
+                return new IdModel(res);
+            } else {
+                return new SuccessModel(false, "creation failed");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
             return new SuccessModel(false, "creation failed");
         }
     }

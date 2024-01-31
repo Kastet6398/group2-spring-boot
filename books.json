@@ -1,1 +1,1 @@
-{"books":[{"name":"YourBookTitle","urlOfContent":"https://example.com/content","categoryId":[1,2,3],"releaseYear":300,"pagesAmount":2022,"id":1}]}
+{"books":[{"name":"Book Title","urlOfContent":"https://ri.co","author":"Author Name","coverSheet":"coverSheet","categoryId":[1],"releaseYear":2000,"pagesAmount":0,"genre":1,"id":1}]}

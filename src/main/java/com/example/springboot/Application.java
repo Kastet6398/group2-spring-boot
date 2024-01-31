@@ -1,9 +1,9 @@
 package com.example.springboot;
 
-import com.example.springboot.models.BookCategoryTableModel;
-import com.example.springboot.models.BookGenreTableModel;
-import com.example.springboot.models.BookTableModel;
 import com.example.springboot.models.UserTableModel;
+import com.example.springboot.models.books.BookCategoryTableModel;
+import com.example.springboot.models.books.BookGenreTableModel;
+import com.example.springboot.models.books.BookTableModel;
 import com.example.springboot.utils.Constants;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
