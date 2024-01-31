@@ -24,8 +24,10 @@ import java.util.Set;
 public class VisualController {
 
     @GetMapping("/")
-    public String index(@RequestParam(name = "search", required = false) String search,@RequestParam(name = "author", required = false) String author,
-                        @RequestParam(name = "genre", required = false) String genre, @CookieValue(name = "token", defaultValue = "") String token, Model model) throws IOException {
+    public String index(@RequestParam(name = "search", required = false) String search,
+                        @RequestParam(name = "author", required = false) String author,
+                        @RequestParam(name = "genre", required = false) String genre,
+                        @CookieValue(name = "token", defaultValue = "") String token, Model model) throws IOException {
         UserModel user = Utils.getUser(token);
         model.addAttribute("user", user);
         List<BookModel> books = ((BookTableModel)Utils.readJson(Constants.BOOK_TABLE_FILE, BookTableModel.class)).getBooks();
