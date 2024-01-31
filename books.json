@@ -1,1 +1,1 @@
-{"books":[{"name":"Book Title","urlOfContent":"https://ri.co","author":"Author Name","coverSheet":"coverSheet","categoryId":[1],"releaseYear":2000,"pagesAmount":0,"genre":1,"id":1}]}
+{"books":[{"name":"Book Title","urlOfContent":"https://ri.co","author":"Author Name","coverSheet":"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png","categoryId":[1],"description":"fff","releaseYear":2000,"pagesAmount":0,"genre":1,"id":1}]}

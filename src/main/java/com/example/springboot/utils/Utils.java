@@ -185,19 +185,8 @@ public class Utils {
             }
         }
 
-        for (int category : book.getCategoryId()) {
-            System.out.println(getCategory(category));
-            if (getCategory(category) == null) {
-                return -1;
-            }
-        }
-        System.out.println(getGenre(book.getGenre()));
-
-        if (getGenre(book.getGenre()) == null) {
-            return -1;
-        }
         int id = books.getBooks().size() + 1;
-        books.getBooks().add(new BookModel(book.getName(), book.getUrlOfContent(), book.getAuthor(), book.getCoverSheet(), book.getCategoryId(), book.getPagesAmount(), book.getReleaseYear(), book.getGenre(), id));
+        books.getBooks().add(new BookModel(book.getName(), book.getUrlOfContent(), book.getAuthor(), book.getCoverSheet(), book.getCategoryId(), book.getPagesAmount(), book.getReleaseYear(), book.getGenre(), book.getDescription(), id));
         writeJson(Constants.BOOK_TABLE_FILE, books);
         return id;
     }

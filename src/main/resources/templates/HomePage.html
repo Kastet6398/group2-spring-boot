@@ -1,89 +1,50 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{base}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Интернет-магазин</title>
+    <title>Library</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <header>
-    <h1>Добро пожаловать в интернет-магазин</h1>
+    <h1>Welcome to our library</h1>
 </header>
 <div layout:fragment="content" class="content">
     <main>
         <section>
-            <h2>Выберите жанр книги:</h2>
-            <select class="form-select" aria-label="Book Genre">
-                <option selected>Выберите жанр</option>
-                <option value="fantasy">Фэнтези</option>
-                <option value="sci-fi">Научная фантастика</option>
-                <option value="mystery">Детектив</option>
-            </select>
+            <form id="genre">
+                <h2>Select genre:</h2>
+                <select name="genre" onchange="document.getElementById('genre').submit();" class="form-select" aria-label="Book Genre">
+                    <option selected>Select genre</option>
+                    <option th:each="genre : ${genres}" th:value="${genre.getId()}" th:text="${genre.getName()}"></option>
+                </select>
+            </form>
         </section>
         <section>
-            <h2>Выберите автора:</h2>
-            <select class="form-select" aria-label="Book Author">
-                <option selected>Выберите автора</option>
-                <option value="fantasy">1</option>
-                <option value="sci-fi">2</option>
-                <option value="mystery">3</option>
-            </select>
+            <form id="author">
+                <h2>Select author:</h2>
+                <select onchange="document.getElementById('author').submit();" name="author" class="form-select" aria-label="Book Author">
+                    <option selected>Select author</option>
+                    <option th:each="author : ${authors}" th:value="${author}" th:text="${author}"></option>
+                </select>
+            </form>
         </section>
 
         <section class="books-section">
-            <h2>Популярные книги:</h2>
+            <h2>Our books:</h2>
             <div class="book-row">
-                <div class="book" onclick="showBookDetails('book1')">
-                    <input type="text" class="book-cover-url" placeholder="Harry Potter(part1)">
-                    <a href="https://www.ukrlib.com.ua/world/printit.php?tid=3945" target="_blank">
-                        <img src="/images/Harry_Potter1.jpg" alt="Book 1 Cover" class="book-cover" id="book1Cover">
-                    </a>
-                    <div class="book-details">
-                        <p class="book-title">Гарри Поттер и философский камень</p>
-                        <p class="book-author">Автор: Автор 1</p>
-                        <p class="book-description">Описание книги...</p>
-                    </div>
-                </div>
-                <div class="book" onclick="showBookDetails('book2')">
-                    <input type="text" class="book-cover-url" placeholder="Harry Potter(part2)">
-                    <a href="https://www.ukrlib.com.ua/world/printit.php?tid=3944" target="_blank">
-                    <img src="/images/Harry_Potter_and_the_Chamber_of_Secrets.jpg" alt="Book 2 Cover" class="book-cover" id="book2Cover">
-                    <div class="book-details">
-                        <p class="book-title">Гарри Поттер и Тайная комната</p>
-                        <p class="book-author">Автор: Автор 2</p>
-                        <p class="book-description">Описание книги...</p>
-                    </div>
+                <div th:each="book : ${books}" class="book" onclick="showBookDetails('book' + ${book.id})">
+                    <a th:href="@{${book.urlOfContent}}" target="_blank">
+                        <p type="text" class="book-cover-url" th:text="${book.name}"></p>
+                        <img th:src="${book.coverSheet}" th:alt="|Book ${book.id} Cover|" class="book-cover" th:id="'book' + ${book.id} + 'Cover'">
+                        <p class="book-author" th:text="'Автор: ' + ${book.author}"></p>
+                        <p class="book-description" th:text="${book.description}"></p>
                     </a>
                 </div>
-
-                <div class="book" onclick="showBookDetails('book3')">
-                    <input type="text" class="book-cover-url" placeholder="Harry Potter(part3)">
-                    <a href="https://www.ukrlib.com.ua/world/printit.php?tid=3942" target="_blank">
-                    <img src="/images/Harry_Potter_and_the_Prisoner_of_Azkaban.jpg" alt="Book 3 Cover" class="book-cover" id="book3Cover">
-                    <div class="book-details">
-                        <p class="book-title">Гарри Поттер и узник Азкабана</p>
-                        <p class="book-author">Автор: Автор 3</p>
-                        <p class="book-description">Описание книги 3...</p>
-                    </div>
-                    </a>
-                </div>
-
             </div>
-
         </section>
     </main>
 </div>
-
-<div id="bookDetailsModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeBookDetailsModal">&times;</span>
-        <h2 id="bookDetailsTitle"></h2>
-        <p id="bookDetailsAuthor">Автор:</p>
-        <p id="bookDetailsDescription">Описание книги...</p>
-    </div>
-</div>
-
-<script src="scripts.js"></script>
 </body>
 </html>
