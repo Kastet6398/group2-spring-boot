@@ -32,17 +32,19 @@
         </section>
         <section class="books-section">
             <h2>Our books:</h2>
-            <div class="book-row">
-                <div th:each="book : ${books}" class="book">
-                    <a th:href="@{${book.urlOfContent}}" target="_blank">
-                        <p type="text" class="book-cover-url" th:text="${book.name}"></p>
-                        <img th:src="${book.coverSheet}" th:alt="|Book ${book.id} Cover|" class="book-cover" th:id="'book' + ${book.id} + 'Cover'">
-                        <p class="book-author" th:text="'Автор: ' + ${book.author}"></p>
-                        <p class="book-description" th:text="${book.description}"></p>
-                    </a>
-                    <button th:if="${book.publisher == user.id}" th:onclick="|deleteBook(${book.id})|">Delete</button>
-                    <button th:if="${book.publisher == user.id}" th:onclick="|location.href='/change-book/${book.id}'|">Edit</button>
-                </div>
+            <div class="book-row" id="userBooks">
+<!--                <div th:each="book : ${books}" class="book">-->
+<!--                    <a th:href="@{${book.urlOfContent}}" target="_blank">-->
+<!--                        <p type="text" class="book-cover-url" th:text="${book.name}"></p>-->
+<!--                        <img th:src="${book.coverSheet}" th:alt="|Book ${book.id} Cover|" class="book-cover" th:id="'book' + ${book.id} + 'Cover'">-->
+<!--                        <p class="book-author" th:text="'Автор: ' + ${book.author}"></p>-->
+<!--                        <p class="book-description" th:text="${book.description}"></p>-->
+<!--                        <button th:onclick="|location.href='/delete-book/${book.id}'|" th:if="${book.publisher == user.id}">Delete</button>-->
+<!--                    </a>-->
+<!--                    <button th:if="${book.publisher == user.id}" th:onclick="|location.href='/delete-book/${book.id}'|">Delete</button>-->
+<!--                    <button th:if="${book.publisher == user.id}" th:onclick="|location.href='/change-book/${book.id}'|">Edit</button>-->
+<!--                </div>-->
+                <script src="/js/HomePage.js"></script>
             </div>
         </section>
     </main>

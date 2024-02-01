@@ -124,7 +124,11 @@ public class Utils {
                 return null;
             }
         }
-        UserModel newUser = new UserModel(user.getFirstName(), user.getLastName(), user.getUsername(), user.getEmail(), encrypt(user.getPassword(), Constants.SECRET_KEY), users.getUsers().size() + 1);
+        int id = users.getUsers().values().stream()
+                .mapToInt(UserModel::getId)
+                .max()
+                .orElse(0) + 1;
+        UserModel newUser = new UserModel(user.getFirstName(), user.getLastName(), user.getUsername(), user.getEmail(), encrypt(user.getPassword(), Constants.SECRET_KEY), id);
         String token = encrypt(generateRandomString(), Constants.SECRET_KEY);
         users.getUsers().put(token, newUser);
         writeJson(Constants.USER_TABLE_FILE, users);
@@ -177,7 +181,11 @@ public class Utils {
             }
         }
 
-        int id = books.getBooks().size() + 1;
+        int id = books.getBooks().stream()
+                .mapToInt(BookModel::getId)
+                .max()
+                .orElse(0) + 1;
+
         books.getBooks().add(new BookModel(book.getName(), book.getUrlOfContent(), book.getAuthor(), book.getCoverSheet(), book.getCategory(), book.getPagesAmount(), book.getReleaseYear(), book.getGenre(), userid, book.getDescription(), id));
         writeJson(Constants.BOOK_TABLE_FILE, books);
         return id;
