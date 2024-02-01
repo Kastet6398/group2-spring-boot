@@ -47,33 +47,37 @@ input[type="button"] {
 }
 
 .content {
-    max-width: 800px;
-    width: 80%;
-    height: 80%;
-    padding: 30px;
-    margin: auto;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
     background-color: white;
+    border-radius: 10px;
 }
 
 h1 {
     text-align: center;
+    color: #49c1a2;
 }
 
 label {
-    margin-left: auto;
-    margin-right: auto;
     display: block;
     margin-top: 20px;
     font-size: 18px;
 }
 
-button,input {
+input,
+button {
     width: 90%;
     padding: 7px;
     border: 1px solid gray;
     border-radius: 6px;
     display: block;
-    margin-left: 10px;
+    margin: 10px auto;
+}
+
+input:focus {
+    border-color: #3498db;
 }
 
 input[type="button"],
@@ -88,7 +92,7 @@ button {
     display: block;
 }
 
-button,input[type="button"]:hover {
+button:hover {
     background-color: #45a049;
 }
 
@@ -189,4 +193,14 @@ button,input[type="button"]:hover {
 
 #bookDetailsAuthor {
     font-style: italic;
+}
+.content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+button {
+    margin-top: 10px;
 }
