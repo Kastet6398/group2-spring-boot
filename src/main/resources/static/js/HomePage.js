@@ -4,8 +4,10 @@ const objectsEqual = (o1, o2) =>
         && Object.keys(o1).every(p => o1[p].name == o2[p].name && o1[p].urlOfContent == o2[p].urlOfContent && o1[p].author == o2[p].author && o1[p].coverSheet == o2[p].coverSheet && o1[p].category == o2[p].category && o1[p].releaseYear == o2[p].releaseYear && o1[p].pagesAmount == o2[p].pagesAmount && o1[p].genre == o2[p].genre && o1[p].description == o2[p].description);
 async function fetchUserBooks() {
     try {
-        const response = await fetch('/api/list-books');
+        var route = '/api/list-books' + location.search;
+        const response = await fetch(route);
         const userBooks2 = await response.json();
+        console.log(userBooks2);
         console.log(userBooks2.books);
         console.log(prev);
         console.log(userBooks2.books != prev);
@@ -68,4 +70,4 @@ async function deleteBook(bookId) {
 }
 
 fetchUserBooks();
-setInterval(fetchUserBooks, 500);
+//setInterval(fetchUserBooks, 500);
