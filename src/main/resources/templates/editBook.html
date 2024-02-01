@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{base}">
-<title layout:fragment="title">Sign Up</title>
+<head>
+    <title>Edit book</title>
+    <script type="text/javascript" th:inline="javascript">
+        var bookId = [[${book.id}]];
+    </script>
+    <script src="/js/editBook.js"></script>
+</head>
 
 <div layout:fragment="content" class="content">
     <h1>Sign Up</h1>
@@ -34,49 +40,5 @@
 
         <button type="submit">Submit</button>
     </form>
-    <script>
-        /*<![CDATA[*/
-        function submitForm(event) {
-            // Get form data
-            var formData = {
-                name: document.getElementById('name').value,
-                urlOfContent: document.getElementById('urlOfContent').value,
-                author: document.getElementById('author').value,
-                coverSheet: document.getElementById('coverSheet').value,
-                category: document.getElementById('category').value,
-                releaseYear: parseInt(document.getElementById('releaseYear').value),
-                pagesAmount: parseInt(document.getElementById('pagesAmount').value),
-                genre: document.getElementById('genre').value,
-                description: document.getElementById('description').value
-            };
-
-            console.log(formData);
-
-            // Send data to API endpoint
-            fetch('/api/change-book/[[${book.getId()}]]', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Handle API response
-                console.log(data);
-                // Optionally, perform actions based on the response
-                if (data.success || data.id) {
-                    alert('Book created successfully!'); // Change this as needed
-                } else {
-                    alert('Error creating book: ' + data.message); // Change this as needed
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        event.preventDefault();
-        }
-/*]]>*/</script>
 </div>
 </html>
