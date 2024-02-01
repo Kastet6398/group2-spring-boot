@@ -1,7 +1,7 @@
 var prev = undefined;
 const objectsEqual = (o1, o2) =>
     Object.keys(o1).length === Object.keys(o2).length
-        && Object.keys(o1).every(p => o1[p].name == o2[p].name);
+        && Object.keys(o1).every(p => o1[p].name == o2[p].name && o1[p].urlOfContent == o2[p].urlOfContent && o1[p].author == o2[p].author && o1[p].coverSheet == o2[p].coverSheet && o1[p].category == o2[p].category && o1[p].releaseYear == o2[p].releaseYear && o1[p].pagesAmount == o2[p].pagesAmount && o1[p].genre == o2[p].genre && o1[p].description == o2[p].description);
 async function fetchUserBooks() {
     try {
         const response = await fetch('/api/list-books');
@@ -21,11 +21,14 @@ async function fetchUserBooks() {
                     <img style="width:90%" src='${book.coverSheet}'>
                     <p>${book.name} by ${book.author}</p>
                     <p>${book.description}</p>
+                    <button class="readBtn" onclick="window.open('${book.urlOfContent}')">Read</button>
             `;
 
+            console.log(book.publisher == user.id);
             if (book.publisher == user.id) {
                 htmlContent += `
                     <button class="deleteBtn" onclick="deleteBook(${book.id})">Delete</button>
+                    <button class="editBtn" onclick="window.open('/edit-book/${book.id}')">Edit</button>
                 `;
             }
 
